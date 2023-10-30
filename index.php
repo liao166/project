@@ -34,6 +34,7 @@
             </div>
             <?php require_once("product_class.php"); ?>
             <?php require_once("recommend.php"); ?>
+        </div>
     </section>
     <section class="footer">
         <?php require_once("footer.php"); ?>
