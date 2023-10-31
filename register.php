@@ -63,7 +63,7 @@
     ?>
     <section class="content">
         <?php require_once("navbar.php"); ?>
-        <div class="container box">
+        <div class="container mt-5 mb-5 box">
             <div class="row">
                 <div class="col-sm-12 text-center mt-5">
                     <h1>會員註冊頁面</h1>
@@ -134,8 +134,8 @@
                             <input type="text" name="recaptcha" id="recaptcha" class="form-control" placeholder="請輸入認證碼">
                         </div>
                         <input type="hidden" name="formctl" id="formctl" value="reg">
-                        <div class="input-group mb-3">
-                            <button type="submit" class="btn btn-mycolor btn-lg">送出</button>
+                        <div class="input-group ">
+                            <button type="submit" class="btn btn-mycolor btn-lg mb-5">送出</button>
                         </div>
                     </form>
                 </div>

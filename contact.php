@@ -30,7 +30,7 @@ if (isset($_POST['flag'])) {
     </section>
     <section class="content">
         <?php require_once("navbar.php"); ?>
-        <div class="container text-center mt-5 pb-3 box">
+        <div class="container text-center mt-5 pb-5 box">
             <div class="row">
                 <div class="col-sm-12 mt-5">
                     <h2>聯絡我們</h2>
