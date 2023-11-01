@@ -348,12 +348,7 @@ body {
     color: red;
 }
 
-
 .table-responsive-md table td {
-    text-align: center;
-}
-
-.table-responsive-md table tfoot td {
     text-align: center;
 }
 

@@ -274,7 +274,7 @@ if (!isset($_SESSION['login'])) {
             </div>
         </div>
     </div>
-    <div id="loading" name="loading" style="display:none;position:fixed;width:100%;height:100%;top:0;left:0;background-color:rgba(255, 255, 255,.5);z-index:9999;"><i class="fas fa-spinner fa-spin fa-5x fa-fw" style="position:absolute;top:50%;left:50%;"></i></div>
+    <div id="loading" name="loading" style="display:none;position:fixed;width:100%;height:100%;top:0;left:0;background-color:rgba(255, 255, 255,.5);z-index:9999;"><i class="spinner-border text-info" style="position:absolute;top:50%;left:50%;"></i></div>
 </body>
 
 </html>
