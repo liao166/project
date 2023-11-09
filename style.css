@@ -257,6 +257,63 @@ body {
     background: #ffad42;
 }
 
+/* about */
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.about img {
+    border-radius: 50%;
+    border: 2px solid #ac6b16;
+    width: 20vw;
+    height: 20vw;
+}
+
+.about h2 {
+    color: #ac6b16;
+}
+
+.text p {
+    color: #555;
+    margin: 2rem 0;
+}
+
+.text img {
+    width: 30vw;
+    height: 20vw;
+    margin: 2rem 0;
+}
+
+.text img:first-child {
+    margin: 0;
+}
+
+.text .pic {
+    width: 20vw;
+    height: 30vw;
+}
+
+.fleft {
+    float: left;
+    margin-right: 5px !important;
+}
+
+.fright {
+    float: right;
+}
+
+.clear {
+    clear: both;
+
+}
+
+.text p {
+    font-size: 20px;
+}
+
 /*product*/
 .b1 {
     display: flex;
@@ -371,7 +428,7 @@ body {
 }
 
 /* contact */
-.box{
+.box {
     background-color: #e6cf92;
     border-radius: 10px;
 }
@@ -406,6 +463,35 @@ body {
 
     .footer {
         font-size: 15px;
+    }
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .text img:first-child {
+        margin: 2rem 0;
+    }
+
+    .fleft {
+        float: none;
+    }
+
+    .fright {
+        float: none;
+    }
+
+    .text img {
+        width: 50vw;
+        height: 40vw;
+    }
+
+    .text .pic {
+        width: 40vw;
+        height: 50vw;
     }
 }
 
