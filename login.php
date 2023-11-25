@@ -23,7 +23,7 @@ if (isset($_SESSION['login'])) {
         /* Card component */
         .mycard.mycard-container {
             max-width: 400px;
-            height: 500px;
+            height: 660px;
         }
 
         .mycard {
@@ -71,7 +71,28 @@ if (isset($_SESSION['login'])) {
             background-color: #6d3220;
         }
 
-        .other a {
+        .form-signin .btn1 {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .btn.lineimg {
+            width: 110px;
+            height: 32px;
+            background-image: url(./images/btn_login_base.png);
+            background-repeat: no-repeat;
+        }
+
+        .btn.lineimg:hover {
+            background-image: url(./images/btn_login_hover.png);
+        }
+
+        .btn.lineimg:active {
+            background-image: url(./images/btn_login_press.png);
+        }
+
+        .other a, p{
             color: #ab7f20;
             font-size: 20px;
         }
@@ -104,10 +125,19 @@ if (isset($_SESSION['login'])) {
                             帳號:<input type="email" id="inputAccount" name="inputAccount" class="form-control" placeholder="example:name@gmail.com" required autofocus>
                             密碼:<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
                             <button class="btn btn-signin mt-4" type="submit">Sign in</button>
+                            <div class="other mt-5 text-center">
+                                <a href="register.php">新用戶/</a><a href="contact.php">忘記密碼?</a>
+                            </div>
+                            <hr>
+                            <div class="btn1">
+                                <p class="other">使用以下方式註冊或登入</p>
+                                <button id="lineLogin" class="btn lineimg text-center"></button>
+                                <div id="g_id_onload" data-client_id="745588392722-ldt3hokig9ll3mk6nekm1qmj9apnipo5.apps.googleusercontent.com" data-callback="handleCallback" data-context="signin" data-ux_mode="popup" data-auto_prompt="false">
+                                </div>
+                                <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="filled_blue" data-text="signin" data-size="medium" data-logo_alignment="left" data-width="110">
+                                </div>
+                            </div>
                         </form>
-                        <div class="other mt-5 text-center">
-                            <a href="register.php">新用戶/</a><a href="contact.php">忘記密碼?</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -147,7 +177,58 @@ if (isset($_SESSION['login'])) {
                     }
                 });
             });
+            $('#lineLogin').on('click', function(e) {
+                let client_id = '2001774863';
+                let redirect_uri = 'http://localhost/project/index.php';
+                let link = 'https://access.line.me/oauth2/v2.1/authorize?';
+                link += 'response_type=code';
+                link += '&client_id=' + client_id;
+                link += '&redirect_uri=' + redirect_uri;
+                link += '&state=login';
+                link += '&scope=openid%20profile%20email';
+                window.location.href = link;
+            });
         });
+    </script>
+    <script>
+        // 成功登入後的回調函數
+        function parseJwt(token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+
+            return JSON.parse(jsonPayload);
+        };
+
+        function handleCallback(response) {
+            const data = parseJwt(response.credential);
+            console.log(data);
+
+            // 將 'data' 資料透過 AJAX 發送到後端（PHP）
+            $.ajax({
+                type: 'POST',
+                url: 'googleLogin.php', // 您的 PHP 文件
+                dataType: 'json',
+                data: {
+                    userData: data
+                }, // 您要傳送的使用者資料
+                success: function(data) {
+                    if (data.c == true) {
+                        alert(data.m);
+                        window.location.href = "<?php echo $sPath; ?>";
+                        // 處理成功訊息（可選）
+                    } else {
+                        alert(data.m);
+                    }
+                },
+                error: function(error) {
+                    alert('發生錯誤：', error);
+                    // 處理錯誤訊息（可選）
+                }
+            });
+        }
     </script>
     <div id="loading" name="loading" style="display:none;position:fixed;width:100%;height:100%;top:0;left:0;background-color:rgba(255, 255, 255,.5);z-index:9999;"><i class="spinner-border text-warning" style="position:absolute;top:50%;left:50%;"></i></div>
 </body>

@@ -46,7 +46,7 @@
         $myzip = $_POST['myZip'] == '' ? NULL : $_POST['myZip'];
         $address = $_POST['address'] == '' ? NULL : $_POST['address'];
         $imgname = $_POST['uploadname'] == '' ? NULL : $_POST['uploadname'];
-        $insertsql = "INSERT INTO member (email,pw1,cname,tssn,birthday,imgname) VALUES ('" . $email . "','" . $pw1 . "','" . $cname . "','" . $tssn . "','" . $birthday . "','" . $imgname . "');";
+        $insertsql = "INSERT INTO `member` (email,pw1,cname,tssn,birthday,imgname) VALUES ('" . $email . "','" . $pw1 . "','" . $cname . "','" . $tssn . "','" . $birthday . "','" . $imgname . "');";
         $Result = $link->query($insertsql);
         $emailid = $link->lastInsertId();     //讀剛新增會員編號
         if ($Result) {
@@ -134,7 +134,7 @@
                             <input type="text" name="recaptcha" id="recaptcha" class="form-control" placeholder="請輸入認證碼">
                         </div>
                         <input type="hidden" name="formctl" id="formctl" value="reg">
-                        <div class="input-group ">
+                        <div class="input-group mb-3">
                             <button type="submit" class="btn btn-mycolor btn-lg mb-5">送出</button>
                         </div>
                     </form>

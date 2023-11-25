@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <?php require_once('Connections/conn_db.php'); ?>
 <?php (!isset($_SESSION)) ? session_start() : ""; ?>
-
+<?php require_once("lineLogin.php"); ?>
 <head>
     <?php require_once("headfile.php"); ?>
 </head>

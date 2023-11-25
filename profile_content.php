@@ -8,7 +8,7 @@
     <div class="col-lg-8 offset-2 text-left">
         <form id="reg" name="reg" action="" method="GET">
             <div class="input-group mb-3">
-                <input type="email" v-model="member.email" class="form-control" placeholder="*請輸入email帳號" readonly>
+                <input type="text" v-model="member.email" name="email" id="email" class="form-control" placeholder="*請輸入email帳號" :readonly="readonly">
             </div>
             <div class="input-group mb-3">
                 <input type="text" v-model="member.cname" name="cname" id="cname" class="form-control" placeholder="*請輸入姓名" :readonly="readonly">

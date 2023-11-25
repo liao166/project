@@ -6,7 +6,7 @@ require_once('Connections/conn_db.php');
 
 if (isset($_GET['emailid']) && $_GET['emailid'] != '') {
     $emailid = $_GET['emailid'];
-    $query = sprintf("SELECT emailid,email,cname,tssn,birthday,imgname FROM member WHERE emailid=%d", $emailid);
+    $query = sprintf("SELECT emailid,email,cname,tssn,birthday,imgname FROM `member` WHERE emailid=%d", $emailid);
     $result = $link->query($query);
     if ($result) {
         $data = $result->fetchAll(PDO::FETCH_ASSOC);

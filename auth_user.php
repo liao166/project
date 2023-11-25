@@ -7,7 +7,7 @@ require_once('Connections/conn_db.php');
 if (isset($_POST['inputAccount']) && isset($_POST['inputPassword'])) {
     $inputAccount = $_POST['inputAccount'];
     $inputPassword = $_POST['inputPassword'];
-    $query = sprintf("SELECT * FROM member WHERE email='%s' AND pw1='%s'", $inputAccount, $inputPassword);
+    $query = sprintf("SELECT * FROM `member` WHERE email='%s' AND pw1='%s'", $inputAccount, $inputPassword);
     $result = $link->query($query);
     if ($result) {
         if ($result->rowCount() == 1) {

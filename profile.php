@@ -106,6 +106,7 @@
                         }
                         await axios.get('reqMember.php', {
                                 params: {
+                                    email: this.member.email,
                                     birthday: this.member.birthday,
                                     cname: this.member.cname,
                                     emailid: this.member.emailid,
@@ -171,6 +172,9 @@
             $('#reg').validate({
                 // onfocusout: false,
                 rules: {
+                    email: {
+                        required: true,
+                    },
                     cname: {
                         required: true,
                     },
@@ -187,6 +191,9 @@
                     },
                 },
                 messages: {
+                    email: {
+                        required: 'email不得為空白!!',
+                    },
                     cname: {
                         required: '使用者名稱不得為空白!!',
                     },
@@ -207,7 +214,6 @@
             $('#changePW').validate({
                 rules: {
                     PWOld: {
-                        required: true,
                         remote: 'checkPW.php?emailid=<?php echo $_SESSION['emailid']; ?>',
                     },
                     PWNew1: {
@@ -222,7 +228,6 @@
                 },
                 messages: {
                     PWOld: {
-                        required: '會員密碼不得為空白!!',
                         remote: '原始密碼有錯誤，需重新輸入',
                     },
                     PWNew1: {
