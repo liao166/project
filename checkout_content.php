@@ -184,7 +184,7 @@ $pTotal = 0;  //設定累加變數$pTotal
             </tr>
             <tr>
                 <td colspan="7">
-                    <button type="button" id="btn04" name="btn04" class="btn btn-danger mr-2"><i class="fas fa-cart-arrow-down pr-2"></i>確認結帳</button>
+                    <a href="" howpay="" type="button" id="btn04" name="btn04" class="btn btn-danger mr-2"><i class="fas fa-cart-arrow-down pr-2"></i>確認結帳</a>
                     <button type="button" id="btn05" name="btn05" class="btn btn-mycolor mr-2" onclick="window.history.go(-1);"><i class="fas fa-undo-alt pr-2"></i>回上一頁</button>
                 </td>
             </tr>

@@ -19,7 +19,7 @@ $cart_rs = $link->query($SQLstring);
     <div class="item">
         <form name="search" action="product.php" id="search" class="search" role="search" method="get">
             <div class="input-group searchtop">
-                <input type="text" size="10" name="search_name" class="form-control-sm input" placeholder="搜尋" value="<?php echo (isset($_GET['search_name'])) ? $_GET['search_name'] : ''; ?>">
+                <input type="text" size="10" name="search_name" class="form-control-sm input" placeholder="產品搜尋" value="<?php echo (isset($_GET['search_name'])) ? $_GET['search_name'] : ''; ?>">
                 <button class="btn btn-sm button" type="submit">
                     <i class="fas fa-search"></i>
                 </button>

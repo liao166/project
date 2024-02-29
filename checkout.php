@@ -38,6 +38,34 @@ if (!isset($_SESSION['login'])) {
     <?php require_once("jsfile.php"); ?>
     <script type="text/javascript">
         $(function() {
+            function changeLink(newText, newHref, newHowpay, newId) {
+                $('#btn04').html(newText);
+                $('#btn04').attr('href', newHref);
+                $('#btn04').attr('howpay', newHowpay);
+                $('#btn01', '#btn02', '#btn03', '#btn04').attr('id', newId);
+            }
+
+            $('#home-tab').click(function() {
+                changeLink("<i class='fas fa-cart-arrow-down pr-2'></i>確認結帳", '', '3', 'btn04');
+            });
+
+            $('#profile-tab').click(function() {
+                var p_name = "<?php echo $cart_data['p_name']; ?>";
+                var pTotal = "<?php echo $pTotal+100; ?>";
+                changeLink("<i class='fas fa-credit-card me-1'></i>信用卡付款", "Ecpay.php", '4', 'btn01');
+            });
+
+            $('#contact-tab').click(function() {
+                var p_name = "<?php echo $cart_data['p_name']; ?>";
+                var pTotal = "<?php echo $pTotal; ?>";
+                changeLink("<i class='fas fa-university'></i>銀行轉帳付款", "Ecpay.php", '5', 'btn02');
+            });
+
+            $('#epay-tab').click(function() {
+                var p_name = "<?php echo $cart_data['p_name']; ?>";
+                var pTotal = "<?php echo $pTotal; ?>";
+                changeLink("<i class='fas fa-money-check-alt'></i>電子支付付款", "Ecpay.php", '6', 'btn03');
+            });
             //取得縣市碼後查詢鄉鎮市名稱放入#myTown
             $("#myCity").change(function() {
                 var CNo = $('#myCity').val();
@@ -171,12 +199,14 @@ if (!isset($_SESSION['login'])) {
                 if (!confirm(msg)) return false;
                 $("#loading").show();
                 var addressid = $('input[name=gridRadios]:checked').val();
+                var howpay = $(this).attr('howpay');
                 $.ajax({
                     url: 'addorder.php',
                     type: 'post',
                     dataType: 'json',
                     data: {
                         addressid: addressid,
+                        howpay: howpay,
                     },
                     success: function(data) {
                         if (data.c == true) {

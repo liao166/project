@@ -54,7 +54,7 @@
     </section>
     <?php require_once("jsfile.php"); ?>
     <script type="text/javascript" src="jquery.validate.js"></script>
-    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         const Vue3 = Vue.createApp({

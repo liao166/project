@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>興德堂中藥房</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="header">
+        <div class="flex">
+            <div class="item">
+                <div class="dropdown drop">
+                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        選擇語言
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">中文</a></li>
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item">
+                <form class="search" role="search" method="get">
+                    <div class="input-group searchup">
+                        <input type="text" size="10" name="search_name" class="form-control-sm input" placeholder="搜尋">
+                        <button class="btn btn-sm button" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="item">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">登入</a></li>
+                        <li class="breadcrumb-item"><a href="#">註冊</a></li>
+                        <li class="breadcrumb-item"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="logo">
+            <a href="index.html"><img src="images/中藥房Logo.png" alt="興德堂中藥房" title="興德堂中藥房"></a>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mx-auto mb-3 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html"><i class="fas fa-yin-yang"></i>首頁</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-yin-yang"></i>關於藥房</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="product.html"><i class="fas fa-yin-yang"></i>產品介紹</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-yin-yang"></i>相關連結</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-yin-yang"></i>聯絡我們</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="accordion mt-5" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    產品種類
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td><a href="#"><em class="fas fa-yin-yang"></em>藥膳包</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#"><em class="fas fa-yin-yang"></em>自製中藥貼布</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="#"><em class="fas fa-yin-yang"></em>中藥材組合</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="row text-center mt-5">
+                        <div class="card col-md-3">
+                            <a href="#">
+                                <div class="img-container">
+                                    <img src="images/人參藥膳湯.jpg" class="card-img-top" alt="人參藥膳湯" title="人參藥膳湯">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">人參藥膳湯包(80克/包)</h5>
+                                    <p class="card-text">NT120</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card col-md-3">
+                            <a href="#">
+                                <div class="img-container">
+                                    <img src="images/當歸鴨湯.jpg" class="card-img-top" alt="當歸鴨湯" title="當歸鴨湯">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">當歸鴨湯包(70克/包)</h5>
+                                    <p class="card-text">NT80</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card col-md-3">
+                            <a href="#">
+                                <div class="img-container">
+                                    <img src="images/燒雞酒湯.jpg" class="card-img-top" alt="燒雞酒湯" title="燒雞酒湯">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">燒雞酒湯包(60克/包)</h5>
+                                    <p class="card-text">NT80</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card col-md-3">
+                            <a href="#">
+                                <div class="img-container">
+                                    <img src="images/薑母鴨湯.jpg" class="card-img-top" alt="薑母鴨湯" title="薑母鴨湯">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">薑母鴨湯包(70克/包)</h5>
+                                    <p class="card-text">NT80</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="card col-md-3">
+                            <a href="#">
+                                <div class="img-container">
+                                    <img src="images/杜仲四物藥膳湯.jpg" class="card-img-top" alt="杜仲四物藥膳湯" title="杜仲四物藥膳湯">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">杜仲四物藥膳湯包(100克/包)</h5>
+                                    <p class="card-text">NT100</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card col-md-3">
+                            <a href="#">
+                                <div class="img-container">
+                                    <img src="images/四神湯.jpg" class="card-img-top" alt="四神湯" title="四神湯">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">四神湯包(150克/包)</h5>
+                                    <p class="card-text">NT160</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/貼布.jpg" class="card-img-top" alt="中藥藥膏貼布" title="中藥藥膏貼布">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">中藥藥膏貼布(每張)</h5>
+                                <p class="card-text">NT200</p>
+                            </div>
+                        </div>
+                        <div class="card col-md-3">
+                            <a href="product1.html">
+                                <div class="img-container">
+                                    <img src="images/四物湯.jpg" class="card-img-top" alt="四物湯" title="四物湯">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">四物湯(每帖)</h5>
+                                    <p class="card-text">NT100</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/四君子湯.jpg" class="card-img-top" alt="四君子湯" title="四君子湯">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">四君子湯(每帖)</h5>
+                                <p class="card-text">NT100</p>
+                            </div>
+                        </div>
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/十全大補湯.jpg" class="card-img-top" alt="十全大補湯" title="十全大補湯">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">十全大補湯(每帖)</h5>
+                                <p class="card-text">NT350</p>
+                            </div>
+                        </div>
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/升麻葛根湯.jpg" class="card-img-top" alt="升麻葛根湯" title="升麻葛根湯">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">升麻葛根湯(每帖)</h5>
+                                <p class="card-text">NT200</p>
+                            </div>
+                        </div>
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/大柴胡湯.jpg" class="card-img-top" alt="大柴胡湯" title="大柴胡湯">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">大柴胡湯(每帖)</h5>
+                                <p class="card-text">NT120</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/六味地黃丸.jpg" class="card-img-top" alt="六味地黃丸" title="六味地黃丸">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">六味地黃丸(每帖)</h5>
+                                <p class="card-text">NT300</p>
+                            </div>
+                        </div>
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/桑菊飲.jpg" class="card-img-top" alt="桑菊飲" title="桑菊飲">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">桑菊飲(每帖)</h5>
+                                <p class="card-text">NT120</p>
+                            </div>
+                        </div>
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/黃連解毒湯.jpg" class="card-img-top" alt="黃連解毒湯" title="黃連解毒湯">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">黃連解毒湯(每帖)</h5>
+                                <p class="card-text">NT300</p>
+                            </div>
+                        </div>
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/龍膽瀉肝湯.jpg" class="card-img-top" alt="龍膽瀉肝湯" title="龍膽瀉肝湯">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">龍膽瀉肝湯(每帖)</h5>
+                                <p class="card-text">NT450</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/十神湯.jpg" class="card-img-top" alt="十神湯" title="十神湯">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">十神湯(每帖)</h5>
+                                <p class="card-text">NT300</p>
+                            </div>
+                        </div>
+                        <div class="card col-md-3">
+                            <div class="img-container">
+                                <img src="images/藥材.jpg" class="card-img-top" alt="其它藥材搭配" title="其它藥材搭配">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">其它藥材搭配</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="container-fluid">
+            <div id="aboutme" class="row text-center">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="#">關於藥房</a><br>
+                            <a href="product.html">產品介紹</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#">相關連結</a><br>
+                            <a href="#">聯絡我們</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <a href="index.html"><img src="images/中藥房Logo.png" alt="興德堂中藥房" title="興德堂中藥房"></a><br>
+
+                </div>
+                <div class="col-md-4">
+                    電話:04-23381753<br>
+                    地址:台中市烏日區中山路二段91號<br>
+                    E-mail:<a href="mailto:3111kr35@gmail.com">3111kr35@gmail.com</a>
+                </div>
+                <div class="col-md-12">
+                    <p>版權所有 copyright © 2023 興德堂中藥房 All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="gotop.js"></script>
+</body>
+
+</html>

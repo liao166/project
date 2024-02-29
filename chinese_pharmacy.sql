@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- 主機： 127.0.0.1
--- 產生時間： 2023-10-02 16:46:44
--- 伺服器版本： 10.4.28-MariaDB
--- PHP 版本： 8.2.4
+-- 主機： localhost
+-- 產生時間： 
+-- 伺服器版本： 8.0.17
+-- PHP 版本： 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,13 +30,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `addbook` (
   `addressid` int(10) NOT NULL COMMENT '地址ID',
-  `setdefault` tinyint(1) NOT NULL DEFAULT 0 COMMENT '預設收件人',
+  `setdefault` tinyint(1) NOT NULL DEFAULT '0' COMMENT '預設收件人',
   `emailid` int(10) NOT NULL COMMENT '會員編號',
-  `cname` varchar(30) NOT NULL COMMENT '收件者姓名',
-  `mobile` varchar(20) NOT NULL COMMENT '收件者電話',
-  `myzip` varchar(10) DEFAULT NULL COMMENT '郵遞區號',
-  `address` varchar(200) NOT NULL COMMENT '收件地址',
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '建立日期'
+  `cname` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '收件者姓名',
+  `mobile` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '收件者電話',
+  `myzip` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '郵遞區號',
+  `address` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT '收件地址',
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立日期'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -49,11 +50,20 @@ CREATE TABLE `cart` (
   `emailid` int(10) DEFAULT NULL COMMENT '會員編號',
   `p_id` int(10) NOT NULL COMMENT '產品編號',
   `qty` int(3) NOT NULL COMMENT '產品數量',
-  `orderid` varchar(30) DEFAULT NULL COMMENT '訂單編號',
-  `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '訂單處理狀態',
-  `ip` varchar(200) NOT NULL COMMENT '訂購者的IP',
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '加入購物車時間'
+  `orderid` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '訂單編號',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '訂單處理狀態',
+  `ip` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT '訂購者的IP',
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '加入購物車時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `cart`
+--
+
+INSERT INTO `cart` (`cartid`, `emailid`, `p_id`, `qty`, `orderid`, `status`, `ip`, `create_date`) VALUES
+(1, 2, 1, 1, '2023111903581451076', 8, '::1', '2023-11-19 15:57:11'),
+(2, 2, 2, 1, '2023111903581451076', 8, '::1', '2023-11-19 15:57:17'),
+(3, 2, 1, 2, '2023111903581451076', 8, '::1', '2023-11-19 15:57:34');
 
 -- --------------------------------------------------------
 
@@ -63,7 +73,7 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `city` (
   `AutoNo` int(10) NOT NULL COMMENT '城市編號',
-  `Name` varchar(150) NOT NULL COMMENT '城市名稱',
+  `Name` varchar(150) COLLATE utf8_unicode_ci NOT NULL COMMENT '城市名稱',
   `cityOrder` tinyint(2) NOT NULL COMMENT '標記',
   `State` smallint(6) NOT NULL COMMENT '狀態'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -105,12 +115,12 @@ INSERT INTO `city` (`AutoNo`, `Name`, `cityOrder`, `State`) VALUES
 
 CREATE TABLE `feedback` (
   `id` int(11) NOT NULL COMMENT '使用者id',
-  `cname` varchar(30) NOT NULL COMMENT '使用者中文姓名',
-  `tel` varchar(20) NOT NULL COMMENT '使用者電話',
-  `email` varchar(60) NOT NULL COMMENT '使用者email',
-  `address` varchar(200) NOT NULL COMMENT '使用者地址',
-  `message` text NOT NULL COMMENT '使用者訊息',
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '訊息日期'
+  `cname` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '使用者中文姓名',
+  `tel` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '使用者電話',
+  `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL COMMENT '使用者email',
+  `address` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT '使用者地址',
+  `message` text COLLATE utf8_unicode_ci NOT NULL COMMENT '使用者訊息',
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '訊息日期'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -121,23 +131,26 @@ CREATE TABLE `feedback` (
 
 CREATE TABLE `member` (
   `emailid` int(11) NOT NULL COMMENT 'email流水號',
-  `email` varchar(100) NOT NULL COMMENT 'email帳號',
-  `pw1` varchar(50) NOT NULL COMMENT '密碼',
-  `active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '是否啟動',
-  `cname` varchar(30) NOT NULL COMMENT '中文姓名',
-  `tssn` varchar(20) NOT NULL COMMENT '身份證字號',
-  `birthday` date NOT NULL COMMENT '生日',
-  `imgname` varchar(20) DEFAULT NULL COMMENT '相片檔名',
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '建立日期'
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'email帳號',
+  `pw1` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '密碼',
+  `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否啟動',
+  `cname` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '中文姓名',
+  `tssn` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份證字號',
+  `birthday` date DEFAULT NULL COMMENT '生日',
+  `imgname` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '相片檔名',
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立日期',
+  `lineid` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Line用戶id',
+  `googleid` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'google用戶id'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 傾印資料表的資料 `member`
 --
 
-INSERT INTO `member` (`emailid`, `email`, `pw1`, `active`, `cname`, `tssn`, `birthday`, `imgname`, `create_date`) VALUES
-(1, 'test@gmail.com', '123456', 1, '林小強', 'A123456789', '2021-04-01', '', '2021-04-21 10:39:50'),
-(2, 'te@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, '李小明', 'A223456789', '2021-04-01', '', '2021-04-21 10:41:48');
+INSERT INTO `member` (`emailid`, `email`, `pw1`, `active`, `cname`, `tssn`, `birthday`, `imgname`, `create_date`, `lineid`, `googleid`) VALUES
+(1, 'test@gmail.com', '123456', 1, '林小強', 'A123456789', '2021-04-01', '', '2021-04-21 10:39:50', NULL, NULL),
+(2, 'te@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, '李小明', 'A223456789', '2021-04-01', '', '2021-04-21 10:41:48', NULL, NULL),
+(3, '3111kr35@gmail.com', '', 1, '廖良錦', '', NULL, NULL, '2023-11-27 11:55:33', 'U4a0b57af00cbc1fe88084757950d0f2a', NULL);
 
 -- --------------------------------------------------------
 
@@ -149,34 +162,34 @@ CREATE TABLE `multiselect` (
   `msid` int(5) NOT NULL COMMENT '多功能選擇ID',
   `mslevel` int(2) NOT NULL COMMENT '多功能選擇層級',
   `msuplink` int(4) NOT NULL COMMENT '上層連結',
-  `opcode` varchar(10) DEFAULT NULL COMMENT '外掛參數',
-  `msname` varchar(50) NOT NULL COMMENT '多功能選擇名稱',
+  `opcode` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '外掛參數',
+  `msname` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '多功能選擇名稱',
   `msort` int(11) DEFAULT NULL COMMENT '各功能列表排序',
-  `url1` varchar(200) DEFAULT NULL COMMENT '外掛網址1',
-  `url2` varchar(200) DEFAULT NULL COMMENT '外掛網址2',
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '建立日期',
-  `update_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '修改日期'
+  `url1` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '外掛網址1',
+  `url2` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '外掛網址2',
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立日期',
+  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 傾印資料表的資料 `multiselect`
 --
 
-INSERT INTO `multiselect` (`msid`, `mslevel`, `msuplink`, `opcode`, `msname`, `msort`, `url1`, `url2`, `create_date`, `update_date`) VALUES
-(1, 1, 0, NULL, '付款方式', 0, NULL, NULL, '2023-08-11 01:46:53', '2023-08-16 19:42:28'),
-(2, 1, 0, NULL, '訂單處理狀態', 0, NULL, NULL, '2023-08-11 01:52:29', '2023-08-16 19:42:41'),
-(3, 2, 1, '', '貨到付款', 1, NULL, NULL, '2023-08-11 01:55:45', '2023-08-16 19:43:37'),
-(4, 2, 1, NULL, '信用卡付款', 2, NULL, NULL, '2023-08-11 01:55:45', '2023-08-16 19:43:54'),
-(5, 2, 1, NULL, '銀行轉帳', 3, NULL, NULL, '2023-08-11 01:55:45', '2023-08-16 19:44:37'),
-(6, 2, 1, NULL, '電子支付', 4, NULL, NULL, '2023-08-11 01:55:45', '2023-08-16 19:44:51'),
-(7, 2, 2, NULL, '處理中', 1, NULL, NULL, '2023-08-11 02:06:42', '2023-08-16 19:45:03'),
-(8, 2, 2, NULL, '待出貨', 2, NULL, NULL, '2023-08-11 02:06:42', '2023-08-16 19:45:32'),
-(9, 2, 2, NULL, '運送中', 3, NULL, NULL, '2023-08-11 02:06:42', '2023-08-16 19:45:45'),
-(10, 2, 2, NULL, '收貨完成', 4, NULL, NULL, '2023-08-11 02:06:42', '2023-08-16 19:46:10'),
-(11, 2, 2, NULL, '退貨中', 5, NULL, NULL, '2023-08-11 02:06:42', '2023-08-16 19:46:24'),
-(12, 2, 2, NULL, '已關閉訂單', 6, NULL, NULL, '2023-08-11 02:06:42', '2023-08-16 19:46:35'),
-(13, 2, 2, NULL, '無效訂單', 7, '', NULL, '2023-08-11 02:06:42', '2023-08-16 21:39:26'),
-(14, 2, 2, NULL, '等待付款', 8, NULL, NULL, '2023-08-17 22:13:47', '2023-08-17 22:15:44');
+INSERT INTO `multiselect` (`msid`, `mslevel`, `msuplink`, `opcode`, `msname`, `msort`, `url1`, `url2`, `create_date`) VALUES
+(1, 1, 0, NULL, '付款方式', 0, NULL, NULL, '2023-08-11 01:46:53'),
+(2, 1, 0, NULL, '訂單處理狀態', 0, NULL, NULL, '2023-08-11 01:52:29'),
+(3, 2, 1, '', '貨到付款', 1, NULL, NULL, '2023-08-11 01:55:45'),
+(4, 2, 1, NULL, '信用卡付款', 2, NULL, NULL, '2023-08-11 01:55:45'),
+(5, 2, 1, NULL, '銀行轉帳', 3, NULL, NULL, '2023-08-11 01:55:45'),
+(6, 2, 1, NULL, '電子支付', 4, NULL, NULL, '2023-08-11 01:55:45'),
+(7, 2, 2, NULL, '處理中', 1, NULL, NULL, '2023-08-11 02:06:42'),
+(8, 2, 2, NULL, '待出貨', 2, NULL, NULL, '2023-08-11 02:06:42'),
+(9, 2, 2, NULL, '運送中', 3, NULL, NULL, '2023-08-11 02:06:42'),
+(10, 2, 2, NULL, '收貨完成', 4, NULL, NULL, '2023-08-11 02:06:42'),
+(11, 2, 2, NULL, '退貨中', 5, NULL, NULL, '2023-08-11 02:06:42'),
+(12, 2, 2, NULL, '已關閉訂單', 6, NULL, NULL, '2023-08-11 02:06:42'),
+(13, 2, 2, NULL, '無效訂單', 7, '', NULL, '2023-08-11 02:06:42'),
+(14, 2, 2, NULL, '等待付款', 8, NULL, NULL, '2023-08-17 22:13:47');
 
 -- --------------------------------------------------------
 
@@ -187,12 +200,12 @@ INSERT INTO `multiselect` (`msid`, `mslevel`, `msuplink`, `opcode`, `msname`, `m
 CREATE TABLE `product` (
   `p_id` int(10) NOT NULL COMMENT '產品編號',
   `classid` int(3) NOT NULL COMMENT '產品類別',
-  `p_name` varchar(200) NOT NULL COMMENT '產品名稱',
-  `p_intro` varchar(200) DEFAULT NULL COMMENT '產品簡介',
+  `p_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT '產品名稱',
+  `p_intro` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '產品簡介',
   `p_price` int(11) DEFAULT NULL COMMENT '產品單價',
-  `p_open` tinyint(1) NOT NULL DEFAULT 1 COMMENT '上架',
-  `p_content` text DEFAULT NULL COMMENT '產品詳細規格',
-  `p_date` timestamp NULL DEFAULT current_timestamp() COMMENT '產品輸入日期'
+  `p_open` tinyint(1) NOT NULL DEFAULT '1' COMMENT '上架',
+  `p_content` text COLLATE utf8_unicode_ci COMMENT '產品詳細規格',
+  `p_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '產品輸入日期'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -228,9 +241,9 @@ INSERT INTO `product` (`p_id`, `classid`, `p_name`, `p_intro`, `p_price`, `p_ope
 CREATE TABLE `product_img` (
   `img_id` int(11) NOT NULL COMMENT '圖檔編號',
   `p_id` int(10) NOT NULL COMMENT '產品編號',
-  `img_file` varchar(100) NOT NULL COMMENT '圖檔名稱',
+  `img_file` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '圖檔名稱',
   `sort` int(2) NOT NULL COMMENT '圖片順序',
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '建立日期'
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立日期'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -266,22 +279,22 @@ INSERT INTO `product_img` (`img_id`, `p_id`, `img_file`, `sort`, `create_date`) 
 CREATE TABLE `pyclass` (
   `classid` int(3) NOT NULL COMMENT '產品類別',
   `level` int(2) NOT NULL COMMENT '所在層級',
-  `fonticon` varchar(30) NOT NULL COMMENT '字型圖示',
-  `cname` varchar(30) NOT NULL COMMENT '類別名稱',
+  `fonticon` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '字型圖示',
+  `cname` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '類別名稱',
   `sort` int(3) NOT NULL COMMENT '列表排序',
   `uplink` int(3) NOT NULL COMMENT '上層連結',
-  `ctext` text DEFAULT NULL,
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '建立時間與更新時間'
+  `ctext` text COLLATE utf8_unicode_ci,
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '建立時間與更新時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 --
 -- 傾印資料表的資料 `pyclass`
 --
 
-INSERT INTO `pyclass` (`classid`, `level`, `fonticon`, `cname`, `sort`, `uplink`, `ctext`, `create_date`) VALUES
-(1, 1, 'fa-yin-yang', '藥膳包', 1, 0, '有多樣的藥材組合，來燉製美味或養生的湯品，可依個人喜好或需求來增減藥材的分量。', '2023-08-30 13:25:31'),
-(2, 1, 'fa-yin-yang', '中藥藥膏貼布', 2, 0, '我們所自製的祖傳祕方藥膏，裡面搭配許多中藥成分，專門醫治骨頭受傷相關的症狀。', '2023-08-30 13:30:56'),
-(3, 1, 'fa-yin-yang', '中藥材組合', 3, 0, '我們的藥材來源，都是與有衛生署合格標章的廠商所選購的，接著在經過我們炒跟炮製，讓藥材可保存的必較久，使消費者能夠買得安心。', '2023-08-30 13:25:31');
+INSERT INTO `pyclass` (`classid`, `level`, `fonticon`, `cname`, `sort`, `uplink`, `ctext`) VALUES
+(1, 1, 'fa-yin-yang', '藥膳包', 1, 0, '有多樣的藥材組合，來燉製美味或養生的湯品，可依個人喜好或需求來增減藥材的分量。'),
+(2, 1, 'fa-yin-yang', '中藥藥膏貼布', 2, 0, '我們所自製的祖傳祕方藥膏，裡面搭配許多中藥成分，專門醫治骨頭受傷相關的症狀。'),
+(3, 1, 'fa-yin-yang', '中藥材組合', 3, 0, '我們的藥材來源，都是與有衛生署合格標章的廠商所選購的，接著在經過我們炒跟炮製，讓藥材可保存的必較久，使消費者能夠買得安心。');
 
 -- --------------------------------------------------------
 
@@ -291,8 +304,8 @@ INSERT INTO `pyclass` (`classid`, `level`, `fonticon`, `cname`, `sort`, `uplink`
 
 CREATE TABLE `town` (
   `townNo` bigint(20) NOT NULL COMMENT '鄕鎮市編號',
-  `Name` varchar(150) NOT NULL COMMENT '鄕鎮市名稱',
-  `Post` varchar(10) NOT NULL COMMENT '郵遞區號',
+  `Name` varchar(150) COLLATE utf8_unicode_ci NOT NULL COMMENT '鄕鎮市名稱',
+  `Post` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT '郵遞區號',
   `State` smallint(6) NOT NULL COMMENT '狀態',
   `AutoNo` int(10) NOT NULL COMMENT '上層城市編號連結'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -681,14 +694,21 @@ INSERT INTO `town` (`townNo`, `Name`, `Post`, `State`, `AutoNo`) VALUES
 --
 
 CREATE TABLE `uorder` (
-  `orderid` varchar(30) NOT NULL COMMENT '訂單編號',
+  `orderid` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '訂單編號',
   `emailid` int(10) NOT NULL COMMENT '會員編號',
   `addressid` int(10) NOT NULL COMMENT '收件人編號',
-  `howpay` tinyint(4) NOT NULL DEFAULT 1 COMMENT '如何付款',
-  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '訂單處理狀態',
-  `remark` varchar(200) DEFAULT NULL COMMENT '備註',
-  `create_date` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '訂單時間'
+  `howpay` tinyint(4) NOT NULL DEFAULT '1' COMMENT '如何付款',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '訂單處理狀態',
+  `remark` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '備註',
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '訂單時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- 傾印資料表的資料 `uorder`
+--
+
+INSERT INTO `uorder` (`orderid`, `emailid`, `addressid`, `howpay`, `status`, `remark`, `create_date`) VALUES
+('2023111903581451076', 2, 1, 3, 7, NULL, '2023-11-19 15:58:14');
 
 --
 -- 已傾印資料表的索引
@@ -775,7 +795,7 @@ ALTER TABLE `addbook`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartid` int(10) NOT NULL AUTO_INCREMENT COMMENT '購物車編號';
+  MODIFY `cartid` int(10) NOT NULL AUTO_INCREMENT COMMENT '購物車編號', AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `city`
@@ -793,7 +813,7 @@ ALTER TABLE `feedback`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `emailid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'email流水號', AUTO_INCREMENT=3;
+  MODIFY `emailid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'email流水號', AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `multiselect`

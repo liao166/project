@@ -8,9 +8,10 @@ require_once('Connections/conn_db.php');
 if (isset($_SESSION['emailid']) && $_SESSION['emailid'] != "") {
     $emailid = $_SESSION['emailid'];
     $addressid = $_POST['addressid'];
+    $howpay = $_POST['howpay'];
     $ip = $_SERVER['REMOTE_ADDR'];
     $orderid = date('Ymdhis') . rand(10000, 99999); //自行產生時間+訂單編號
-    $query = sprintf("INSERT INTO uorder (orderid, emailid, addressid, howpay, status) VALUES ('%s','%d','%d','3','7');", $orderid, $emailid, $addressid);
+    $query = sprintf("INSERT INTO uorder (orderid, emailid, addressid, howpay, status) VALUES ('%s','%d','%d','%d','7');", $orderid, $emailid, $addressid, $howpay);
     $result = $link->query($query);
     if ($result) {
         $query = sprintf("UPDATE cart SET orderid ='%s', emailid='%d', status= '8' WHERE ip='%s' AND orderid IS NULL;", $orderid, $emailid, $ip);
