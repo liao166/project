@@ -10,7 +10,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     /* align-items: center; */
 }
 
@@ -502,5 +502,11 @@ body {
 
     .row .col-md-6 img {
         margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .flex {
+        justify-content: center;
     }
 }
