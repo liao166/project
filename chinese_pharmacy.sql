@@ -39,6 +39,13 @@ CREATE TABLE `addbook` (
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立日期'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- 傾印資料表的資料 `addbook`
+--
+
+INSERT INTO `addbook` (`addressid`, `setdefault`, `emailid`, `cname`, `mobile`, `myzip`, `address`, `create_date`) VALUES
+(2, 1, 3, '廖良錦', '0966158196', '414', '民權街75號', '2023-12-01 10:28:55');
+
 -- --------------------------------------------------------
 
 --
@@ -55,15 +62,6 @@ CREATE TABLE `cart` (
   `ip` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT '訂購者的IP',
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '加入購物車時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- 傾印資料表的資料 `cart`
---
-
-INSERT INTO `cart` (`cartid`, `emailid`, `p_id`, `qty`, `orderid`, `status`, `ip`, `create_date`) VALUES
-(1, 2, 1, 1, '2023111903581451076', 8, '::1', '2023-11-19 15:57:11'),
-(2, 2, 2, 1, '2023111903581451076', 8, '::1', '2023-11-19 15:57:17'),
-(3, 2, 1, 2, '2023111903581451076', 8, '::1', '2023-11-19 15:57:34');
 
 -- --------------------------------------------------------
 
@@ -150,7 +148,7 @@ CREATE TABLE `member` (
 INSERT INTO `member` (`emailid`, `email`, `pw1`, `active`, `cname`, `tssn`, `birthday`, `imgname`, `create_date`, `lineid`, `googleid`) VALUES
 (1, 'test@gmail.com', '123456', 1, '林小強', 'A123456789', '2021-04-01', '', '2021-04-21 10:39:50', NULL, NULL),
 (2, 'te@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, '李小明', 'A223456789', '2021-04-01', '', '2021-04-21 10:41:48', NULL, NULL),
-(3, '3111kr35@gmail.com', '', 1, '廖良錦', '', NULL, NULL, '2023-11-27 11:55:33', 'U4a0b57af00cbc1fe88084757950d0f2a', NULL);
+(3, '3111kr35@gmail.com', '', 1, '廖良錦', '', NULL, NULL, '2023-11-27 11:55:33', 'U4a0b57af00cbc1fe88084757950d0f2a', '104023097292349880914');
 
 -- --------------------------------------------------------
 
@@ -278,11 +276,9 @@ INSERT INTO `product_img` (`img_id`, `p_id`, `img_file`, `sort`, `create_date`) 
 
 CREATE TABLE `pyclass` (
   `classid` int(3) NOT NULL COMMENT '產品類別',
-  `level` int(2) NOT NULL COMMENT '所在層級',
   `fonticon` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '字型圖示',
   `cname` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '類別名稱',
   `sort` int(3) NOT NULL COMMENT '列表排序',
-  `uplink` int(3) NOT NULL COMMENT '上層連結',
   `ctext` text COLLATE utf8_unicode_ci,
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '建立時間與更新時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
@@ -291,10 +287,10 @@ CREATE TABLE `pyclass` (
 -- 傾印資料表的資料 `pyclass`
 --
 
-INSERT INTO `pyclass` (`classid`, `level`, `fonticon`, `cname`, `sort`, `uplink`, `ctext`) VALUES
-(1, 1, 'fa-yin-yang', '藥膳包', 1, 0, '有多樣的藥材組合，來燉製美味或養生的湯品，可依個人喜好或需求來增減藥材的分量。'),
-(2, 1, 'fa-yin-yang', '中藥藥膏貼布', 2, 0, '我們所自製的祖傳祕方藥膏，裡面搭配許多中藥成分，專門醫治骨頭受傷相關的症狀。'),
-(3, 1, 'fa-yin-yang', '中藥材組合', 3, 0, '我們的藥材來源，都是與有衛生署合格標章的廠商所選購的，接著在經過我們炒跟炮製，讓藥材可保存的必較久，使消費者能夠買得安心。');
+INSERT INTO `pyclass` (`classid`, `fonticon`, `cname`, `sort`, `ctext`) VALUES
+(1, 'fa-yin-yang', '藥膳包', 1, '有多樣的藥材組合，來燉製美味或養生的湯品，可依個人喜好或需求來增減藥材的分量。'),
+(2, 'fa-yin-yang', '中藥藥膏貼布', 2, '我們所自製的祖傳祕方藥膏，裡面搭配許多中藥成分，專門醫治骨頭受傷相關的症狀。'),
+(3, 'fa-yin-yang', '中藥材組合', 3, '我們的藥材來源，都是與有衛生署合格標章的廠商所選購的，接著在經過我們炒跟炮製，讓藥材可保存的必較久，使消費者能夠買得安心。');
 
 -- --------------------------------------------------------
 
@@ -704,13 +700,6 @@ CREATE TABLE `uorder` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 --
--- 傾印資料表的資料 `uorder`
---
-
-INSERT INTO `uorder` (`orderid`, `emailid`, `addressid`, `howpay`, `status`, `remark`, `create_date`) VALUES
-('2023111903581451076', 2, 1, 3, 7, NULL, '2023-11-19 15:58:14');
-
---
 -- 已傾印資料表的索引
 --
 
@@ -795,7 +784,7 @@ ALTER TABLE `addbook`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartid` int(10) NOT NULL AUTO_INCREMENT COMMENT '購物車編號', AUTO_INCREMENT=4;
+  MODIFY `cartid` int(10) NOT NULL AUTO_INCREMENT COMMENT '購物車編號';
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `city`

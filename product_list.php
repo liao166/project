@@ -9,12 +9,9 @@ $startRow_rs = $pageNum_rs * $maxRows_rs;
 if (isset($_GET['search_name'])) {
     //使用關鍵字查詢
     $queryFirst = sprintf("SELECT * FROM product,product_img,pyclass WHERE p_open=1 AND product_img.sort=1 AND product.p_id=product_img.p_id AND product.classid=pyclass.classid AND product.p_name LIKE '%s' order by product.p_id ASC", '%' . $_GET['search_name'] . '%');
-} elseif (isset($_GET['level']) && $_GET['level'] == 1) {
-    //使用第一層類別查詢
-    $queryFirst = sprintf("SELECT * FROM product,product_img,pyclass WHERE p_open=1 AND product_img.sort=1 AND product.p_id=product_img.p_id AND product.classid=pyclass.classid AND pyclass.uplink='%d' order by product.p_id ASC", $_GET['classid']);
 } elseif (isset($_GET['classid'])) {
     //使用產品類別查詢
-    $queryFirst = sprintf("SELECT * FROM product,product_img WHERE p_open=1 AND product_img.sort=1 AND product.p_id=product_img.p_id AND product.classid='%d' order by product.p_id ASC", $_GET['classid']);
+    $queryFirst = sprintf("SELECT * FROM product,product_img,pyclass WHERE p_open=1 AND product_img.sort=1 AND product.p_id=product_img.p_id AND product.classid=pyclass.classid AND pyclass.classid='%d' order by product.p_id ASC", $_GET['classid']);
 } else {
     //列出產品product資料查詢
     $queryFirst = sprintf("SELECT * FROM product,product_img WHERE p_open=1 AND product_img.sort=1 AND product.p_id=product_img.p_id order by product.p_id ASC");
