@@ -1,6 +1,6 @@
 <?php
 //列出產品類別第一層
-$SQLstring = "SELECT * FROM pyclass WHERE level=1 ORDER BY sort";
+$SQLstring = "SELECT * FROM pyclass ORDER BY sort";
 $pyclass01 = $link->query($SQLstring);
 $i = 1; //控制編號順序
 ?>
