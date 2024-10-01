@@ -29,8 +29,7 @@ if (isset($_SESSION['login'])) {
         .mycard {
             background-color: #f7f7f7;
             padding: 20px 25px 30px;
-            margin: 0 auto 25px;
-            margin-top: 100px;
+            margin: 100px auto 25px;
             -moz-border-radius: 10px;
             -webkit-border-radius: 10px;
             border-radius: 10px;
