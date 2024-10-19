@@ -38,33 +38,36 @@ if (!isset($_SESSION['login'])) {
     <?php require_once("jsfile.php"); ?>
     <script type="text/javascript">
         $(function() {
-            function changeLink(newText, newHref, newHowpay, newId) {
-                $('#btn04').html(newText);
-                $('#btn04').attr('href', newHref);
-                $('#btn04').attr('howpay', newHowpay);
-                $('#btn01', '#btn02', '#btn03', '#btn04').attr('id', newId);
+            $('#btn01').hide();
+
+            function changeLink(newText, newHowpay) {
+                $('#btn01').html(newText);
+                $('#btn01').attr('howpay', newHowpay);
             }
 
             $('#home-tab').click(function() {
-                changeLink("<i class='fas fa-cart-arrow-down pr-2'></i>確認結帳", '', '3', 'btn04');
+                $('#btn01').hide();
+                $('#btn02').hide();
+                $('#btn03').hide();
+                $('#btn04').show();
             });
 
             $('#profile-tab').click(function() {
-                var p_name = "<?php echo $cart_data['p_name']; ?>";
-                var pTotal = "<?php echo $pTotal+100; ?>";
-                changeLink("<i class='fas fa-credit-card me-1'></i>信用卡付款", "Ecpay.php", '4', 'btn01');
+                $('#btn01').show();
+                $('#btn04').hide();
+                changeLink("<i class='fas fa-credit-card me-1'></i>信用卡付款", '4');
             });
 
             $('#contact-tab').click(function() {
-                var p_name = "<?php echo $cart_data['p_name']; ?>";
-                var pTotal = "<?php echo $pTotal; ?>";
-                changeLink("<i class='fas fa-university'></i>銀行轉帳付款", "Ecpay.php", '5', 'btn02');
+                $('#btn01').show();
+                $('#btn04').hide();
+                changeLink("<i class='fas fa-university'></i>銀行轉帳付款", '5');
             });
 
             $('#epay-tab').click(function() {
-                var p_name = "<?php echo $cart_data['p_name']; ?>";
-                var pTotal = "<?php echo $pTotal; ?>";
-                changeLink("<i class='fas fa-money-check-alt'></i>電子支付付款", "Ecpay.php", '6', 'btn03');
+                $('#btn01').show();
+                $('#btn04').hide();
+                changeLink("<i class='fas fa-money-check-alt'></i>電子支付付款", '6');
             });
             //取得縣市碼後查詢鄉鎮市名稱放入#myTown
             $("#myCity").change(function() {
@@ -194,6 +197,33 @@ if (!isset($_SESSION['login'])) {
                 });
             });
             //系統進行結帳處理
+            $("#btn01").click(function() {
+                let msg = "系統將進行結帳處理，請確認產品金額與收件人是否正確!";
+                if (!confirm(msg)) return false;
+                $("#loading").show();
+                var addressid = $('input[name=gridRadios]:checked').val();
+                var howpay = $(this).attr('howpay');
+                $.ajax({
+                    url: 'Ecpaybackend.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        addressid: addressid,
+                        howpay: howpay
+                    },
+                    success: function(data) {
+                        if (data.c == true) {
+                            alert(data.m);
+                            window.location.href = "Ecpay.php";
+                        } else {
+                            alert("Database reponse error：" + data.m);
+                        }
+                    },
+                    error: function(data) {
+                        alert("ajax request error");
+                    }
+                });
+            });
             $("#btn04").click(function() {
                 let msg = "系統將進行結帳處理，請確認產品金額與收件人是否正確!";
                 if (!confirm(msg)) return false;
@@ -206,7 +236,7 @@ if (!isset($_SESSION['login'])) {
                     dataType: 'json',
                     data: {
                         addressid: addressid,
-                        howpay: howpay,
+                        howpay: howpay
                     },
                     success: function(data) {
                         if (data.c == true) {
